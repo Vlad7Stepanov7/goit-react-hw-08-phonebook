@@ -6,7 +6,7 @@ const Loader = () => {
     return (
         <Spinner>
             <Puff
-            color="#9900cc"
+            color="#eaf003"
             height="40"
             width="40"
              />

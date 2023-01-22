@@ -22,4 +22,3 @@ const Filter = () => {
 }
 
 export default Filter;
-// Find contacts by name

@@ -7,6 +7,7 @@ import { fetchContacts } from "redux/contacts/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { selectContacts, selectIsLoading, selectError } from "redux/contacts/selectors";
+import { Box } from "@mui/material";
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -27,14 +28,14 @@ const Contacts = () => {
     };
     
     return (
-        <div>
+        <Box sx={{width: "100%"}}>
         <ContactForm contacts={contacts} />
         <Filter /> 
         <h2>Contact</h2>
       {isLoader && <Loader/>}
       {isError && notificationError(isError)}
       {isShow && <ContactList contacts={contacts}/>}  
-      </div>
+      </Box>
   )
 }
 
