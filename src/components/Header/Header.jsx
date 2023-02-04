@@ -8,8 +8,7 @@ const Header = () => {
     const { isLoggedIn } = useAuth();
 
     return (
-        <AppBar position="static"
-        sx={{backgroundColor: "#000"}}>
+        <AppBar position="static">
             <Toolbar
                 sx={{
                     display: "flex",

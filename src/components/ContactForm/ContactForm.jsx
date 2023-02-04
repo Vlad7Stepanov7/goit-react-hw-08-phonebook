@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addContact } from "redux/contacts/operations";
 import { TextField, Box, Button } from '@mui/material';
-import { formStyle, inputStyle } from 'utils/FormStyle';
+import { button, formStyle, inputStyle } from 'utils/styles';
 
 const ContactForm = ({contacts}) => {
     const dispatch = useDispatch();
@@ -31,17 +31,19 @@ const ContactForm = ({contacts}) => {
         reset();
     }
     
-   
-    
     return (
        
         <Box
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      sx={formStyle}
-    >
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
+            sx={formStyle}
+            p={4}
+            mb={5}
+            mx="auto"
+        >
            
-                <TextField  
+            <TextField  
+                
                 type="text" {...register("name")}
                 id="Name"
                 label="Name"
@@ -53,8 +55,8 @@ const ContactForm = ({contacts}) => {
             
                 <TextField
                     
-                    type="tel" {...register("number")}
-                     id="Number"
+                type="tel" {...register("number")}
+                id="Number"
                 label="Numbere"
                 sx={inputStyle}
                 pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -63,11 +65,8 @@ const ContactForm = ({contacts}) => {
                />
             
             <Button
-        type="submit"
-        sx={{
-          color: "#000",
-          fontSize: "24px"
-        }}
+                type="submit"
+                 sx={button}
             >
                 Add contact
             </Button>

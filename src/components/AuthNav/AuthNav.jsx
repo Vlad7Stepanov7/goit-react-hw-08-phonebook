@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Button } from '@mui/material';
-import { navLinkStyle } from "utils/NavLinkStyle";
+import { navLinkStyle } from "utils/styles";
 
 const AuthNav = () => {
     

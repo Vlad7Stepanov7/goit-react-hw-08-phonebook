@@ -2,7 +2,7 @@ import { useAuth } from "hooks";
 import { useDispatch } from "react-redux";
 import { logOut } from "redux/auth/operations";
 import { Button, Typography } from "@mui/material";
-import { navLinkStyle } from "utils/NavLinkStyle";
+import { navLinkStyle } from "utils/styles";
 
 const UserMenu = () => {
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const UserMenu = () => {
                 variant="body1"
                 component="p"
                 sx={{
-                    color: "#eaf003",
+                    color: "#fff",
                     mt: "5px"
                 }}
             >

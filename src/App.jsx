@@ -1,20 +1,21 @@
-
 import Layout from "components/Layout/Layout";
+import Loader from "components/Loader/Loader";
 import { Routes, Route } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 import { useAuth } from "hooks";
-import { useEffect } from "react";
+import { useEffect, lazy } from "react";
 import { refreshUser } from "redux/auth/operations";
 import { RestrictedRoute } from "utils/RestrictedRoute";
 import { PrivateRoute } from "utils/PrivateRoute";
-import Register from "pages/Register/Register";
-import Home from "pages/Home/Home";
-import Login from "pages/Login/Login";
-import Contacts from "pages/Contacts/Contacts";
-import Loader from "components/Loader/Loader";
-import { Container } from '@mui/material';
+import { Container, Box } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const HomePage = lazy(() => import("./pages/Home"));
+const RegisterPage = lazy(() => import('./pages/Register'));
+const LoginPage = lazy(() => import('./pages/Login'));
+const ContactsPage = lazy(() => import('./pages/Contacts'));
+
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
@@ -27,20 +28,24 @@ export const App = () => {
   return isRefreshing ? (
     <Loader/>
   ) : (
-      <Container maxWidth="lg"
-        sx={{ textAlign: "center" }}
-      > 
+      <Container maxWidth="lg" > 
+        <Box
+           sx={{
+          textAlign: "center",
+          height: "100vh",
+        }}
+        >
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home/>} />
+          <Route index element={<HomePage/>} />
             <Route path="/register"
-              element={<RestrictedRoute redirectTo="/contacts" component={<Register/>} />}
+              element={<RestrictedRoute redirectTo="/contacts" component={<RegisterPage/>} />}
             />
             <Route path="/login"
-              element={<RestrictedRoute redirectTo="/contacts" component={<Login />} />}
+              element={<RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />}
             />
             <Route path="/contacts"
-              element={<PrivateRoute redirectTo="/login" component={<Contacts />} />}
+              element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} />}
             />
         </Route>
       </Routes>
@@ -56,7 +61,8 @@ export const App = () => {
          draggable
          pauseOnHover
          theme="colored"
-      />
+          />
+        </Box>
     </Container>)
 };
    

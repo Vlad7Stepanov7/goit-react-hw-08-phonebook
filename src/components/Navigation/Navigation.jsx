@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "hooks";
 import { Button } from '@mui/material';
-import { navLinkStyle } from "utils/NavLinkStyle";
+import { navLinkStyle } from "utils/styles";
 
 const Navigation = () => {
   const { isLoggedIn } = useAuth();

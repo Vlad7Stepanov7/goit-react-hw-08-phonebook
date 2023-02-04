@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from 'redux/auth/operations';
 import { useForm } from 'react-hook-form';
 import { TextField, Box, Button } from '@mui/material';
-import { formStyle, inputStyle } from 'utils/FormStyle';
+import { formStyle, inputStyle, button } from 'utils/styles';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -31,6 +31,9 @@ const RegisterForm = () => {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
       sx={formStyle}
+      p={4}
+      mb={5}
+      mx="auto"
     >
       
         <TextField
@@ -53,10 +56,8 @@ const RegisterForm = () => {
         />
       <Button
         type="submit"
-        sx={{
-          color: "#000",
-          fontSize: "24px"
-        }}
+        variant="contained"
+        sx={button}
       >
         Register
       </Button>

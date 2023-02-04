@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { updateFilter } from 'redux/filter/filterSlice';
 import { TextField } from '@mui/material';
-import { inputStyle } from 'utils/FormStyle';
+import { inputStyle } from 'utils/styles';
 
 const Filter = () => {
     const dispatch = useDispatch();
