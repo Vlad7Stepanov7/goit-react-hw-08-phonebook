@@ -36,7 +36,11 @@ const Contacts = () => {
       >
         <ContactForm contacts={contacts} />
         <Filter /> 
-        <Typography variant="h3" component="h2">
+        <Typography
+          variant="h3"
+          component="h2"
+          sx={{color:"text.primary"}}
+        >
           Contacts
         </Typography>
       {isLoader && <Loader/>}

@@ -1,15 +1,19 @@
 import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
+import { Box } from "@mui/material";
 import Header from "components/Header/Header";
 
 const Layout = () => {
     return (
-        <div>
+        <Box sx={{
+            backgroundColor: 'background.paper',
+            minHeight: '100vh'
+        }}>
             <Header />
-            <Suspense>
-             <Outlet/>
-            </Suspense>   
-        </div>
+             <Suspense>
+               <Outlet/>
+             </Suspense>   
+        </Box>
     )
 }
 

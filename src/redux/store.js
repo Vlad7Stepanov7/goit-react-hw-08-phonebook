@@ -11,12 +11,14 @@ import {
 import { filterReducer } from "./filter/filterSlice";
 import { authReducer } from "./auth/authSlice";
 import { contactsReducer } from "./contacts/contactsSlice";
+import { themeReducer } from "./Theme/ThemeSlice";
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
         contacts: contactsReducer,
-        filter: filterReducer
+        filter: filterReducer,
+        theme: themeReducer,
     },
 
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({

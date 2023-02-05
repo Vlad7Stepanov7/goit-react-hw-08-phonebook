@@ -18,8 +18,21 @@ const ContactList = ({contacts}) => {
          {filterContacts.map(({ id, name, number }) => {
         return (
           <ListItem key={id}>
-            <ListItemText>{name}: {number}</ListItemText>
-            <ListItemButton type="button" onClick={() => dispatch(deleteContact(id))}>Delete</ListItemButton>
+            <ListItemText
+              sx={{
+              color: "text.primary",
+              width: "300px"
+            }}
+            >
+              {name}: {number}
+            </ListItemText>
+            <ListItemButton 
+               sx={{color: "text.primary"}} 
+               type="button" 
+              onClick={() => dispatch(deleteContact(id))}
+            >
+              Delete
+            </ListItemButton>
           </ListItem>
         )
        })}

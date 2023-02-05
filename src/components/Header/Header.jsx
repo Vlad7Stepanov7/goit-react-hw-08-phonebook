@@ -1,8 +1,9 @@
 import Navigation from "components/Navigation/Navigation";
 import UserMenu from "components/UserMenu/UserMenu";
 import AuthNav from "components/AuthNav/AuthNav";
+import ThemeToggler from "components/ThemeToggle/ThemeToggle";
 import { useAuth } from "hooks";
-import { AppBar, Toolbar } from '@mui/material';
+import { AppBar, Toolbar, Box } from '@mui/material';
 
 const Header = () => {
     const { isLoggedIn } = useAuth();
@@ -15,8 +16,15 @@ const Header = () => {
                     justifyContent: "space-between"
                 }}
             >
-            <Navigation />
+                <Box sx={{
+                    display: "flex",
+                    alignItems: "center"
+                }}>
+                <Navigation />
+                <ThemeToggler/>
+            </Box>
                 {isLoggedIn ? <UserMenu /> : <AuthNav />}
+                
             </Toolbar>    
         </AppBar>
     )

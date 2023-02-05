@@ -12,7 +12,14 @@ const Home = () => {
                 justifyContent: "center"
             }}
         >
-            <Typography variant="h1" component="h1">
+            <Typography
+                variant="h1"
+                component="h1"
+                sx={{
+                    color: "text.primary",
+                    fontWeight: "600"
+                }}
+            >
                 Phonebook
             </Typography>
         </Box>
