@@ -4,21 +4,20 @@ import { useDispatch } from "react-redux";
 import { addContact } from "redux/contacts/operations";
 import { TextField, Box, Button } from '@mui/material';
 import { button, formStyle, inputStyle } from 'utils/styles';
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-
+const schema = yup.object({
+    name: yup.string().required(),
+    number: yup.number().required(),
+}).required();
 
 const ContactForm = ({contacts}) => {
     const dispatch = useDispatch();
     const { register, handleSubmit, reset } = useForm({
-    defaultValues: {
-        name: '',
-        number: ''
-    }});
-//     const schema = yup.object({
-//     name: yup.string().min(3).max(20).required("Name must be between 3 and 30 symbols"),
-//     number: yup.number()
-// })
+        resolver: yupResolver(schema),
+    });
+
     const onSubmit = values => {
         const { name, number } = values;
 
@@ -42,7 +41,6 @@ const ContactForm = ({contacts}) => {
         <Box
             component="form"
             onSubmit={handleSubmit(onSubmit)}
-            
             sx={formStyle}
             p={4}
             mb={5}

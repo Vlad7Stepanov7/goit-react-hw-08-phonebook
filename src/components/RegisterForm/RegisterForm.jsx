@@ -3,19 +3,22 @@ import { registerUser } from 'redux/auth/operations';
 import { useForm } from 'react-hook-form';
 import { TextField, Box, Button } from '@mui/material';
 import { formStyle, inputStyle, button } from 'utils/styles';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object({
+    name: yup.string().min(3).required(),
+    email: yup.string().min(7).max(20).email().required(),
+    password: yup.string().required(),
+}).required();
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm({
-        defaultValues: {
-            name: '',
-            password: '',
-            email: ''
-        }
+         resolver: yupResolver(schema),
   });
   
   const onSubmit = ({name, password, email}) => {
-    console.log(name, password, email);
     dispatch(
       registerUser({
         name,

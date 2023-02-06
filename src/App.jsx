@@ -50,7 +50,9 @@ export const App = () => {
       [mode]);
   
   return isRefreshing ? (
-    <Loader/>
+    <Box mr="auto" ml="auto">
+      <Loader />
+    </Box> 
   ) : (
       <ThemeProvider theme={theme}>
       <Container maxWidth="lg" > 
