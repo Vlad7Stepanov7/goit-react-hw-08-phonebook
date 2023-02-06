@@ -6,14 +6,17 @@ import { formStyle, inputStyle, button } from 'utils/styles';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+// toast.warning("The fields were filled in incorrectly.Example name: Adrian Cross  email: across@mail.com password: examplepwd12345");
+
 const schema = yup.object({
-    name: yup.string().min(3).required(),
-    email: yup.string().min(7).max(20).email().required(),
-    password: yup.string().required(),
+    name: yup.string().min(7).required(),
+    email: yup.string().min(7).email().required(),
+    password: yup.string().min(7).required(),
 }).required();
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+
   const { register, handleSubmit, reset } = useForm({
          resolver: yupResolver(schema),
   });

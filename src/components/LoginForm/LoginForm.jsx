@@ -7,12 +7,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const schema = yup.object({
-    email: yup.string().min(7).max(20).email().required(),
+    email: yup.string().email().required(),
     password: yup.string().required(),
 }).required();
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    
     const { register, handleSubmit, reset } = useForm({
        resolver: yupResolver(schema),
     });

@@ -50,7 +50,7 @@ export const App = () => {
       [mode]);
   
   return isRefreshing ? (
-    <Box mr="auto" ml="auto">
+    <Box ml="700px">
       <Loader />
     </Box> 
   ) : (
