@@ -1,11 +1,13 @@
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addContact } from "redux/contacts/operations";
-import { TextField, Box, Button } from '@mui/material';
+import { TextField, Box, Button, Typography } from '@mui/material';
 import { button, formStyle, inputStyle } from 'utils/styles';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 
 const schema = yup.object({
     name: yup.string().required(),
@@ -14,9 +16,16 @@ const schema = yup.object({
 
 const ContactForm = ({contacts}) => {
     const dispatch = useDispatch();
-    const { register, handleSubmit, reset } = useForm({
-        resolver: yupResolver(schema),
-    });
+    
+    const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
+  });
 
     const onSubmit = values => {
         const { name, number } = values;
@@ -48,7 +57,6 @@ const ContactForm = ({contacts}) => {
         >
            
             <TextField  
-                
                 type="text" {...register("name")}
                 id="Name"
                 label="Name"
@@ -57,9 +65,15 @@ const ContactForm = ({contacts}) => {
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
                 />
-            
-                <TextField
-                    
+            <Typography 
+              variant='body1' 
+              component="span"
+              sx={{color: "text.primary"}}
+            >
+            {errors.name?.message}
+            </Typography>
+
+            <TextField
                 type="tel" {...register("number")}
                 id="Number"
                 label="Numbere"
@@ -68,7 +82,13 @@ const ContactForm = ({contacts}) => {
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
                />
-            
+            <Typography 
+              variant='body1' 
+              component="span"
+              sx={{color: "text.primary"}}
+            >
+            {errors.number?.message}
+            </Typography>
             <Button
                 type="submit"
                  sx={button}
@@ -79,4 +99,11 @@ const ContactForm = ({contacts}) => {
     )
 }
 
+ContactForm.propTypes = {
+    contacts: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired
+    })).isRequired
+}
 export default ContactForm;

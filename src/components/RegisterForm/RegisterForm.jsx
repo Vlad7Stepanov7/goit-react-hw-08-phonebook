@@ -1,15 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { registerUser } from 'redux/auth/operations';
 import { useForm } from 'react-hook-form';
-import { TextField, Box, Button } from '@mui/material';
+import { TextField, Box, Button, Typography } from '@mui/material';
 import { formStyle, inputStyle, button } from 'utils/styles';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-// toast.warning("The fields were filled in incorrectly.Example name: Adrian Cross  email: across@mail.com password: examplepwd12345");
-
 const schema = yup.object({
-    name: yup.string().min(7).required(),
+  name: yup.string().min(7).required(),
     email: yup.string().min(7).email().required(),
     password: yup.string().min(7).required(),
 }).required();
@@ -17,8 +15,14 @@ const schema = yup.object({
 const RegisterForm = () => {
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, reset } = useForm({
-         resolver: yupResolver(schema),
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
   });
   
   const onSubmit = ({name, password, email}) => {
@@ -47,19 +51,40 @@ const RegisterForm = () => {
           id="Username"
           label="Username"
           sx={inputStyle}
-        />
+      />
+      <Typography 
+        variant='body1' 
+        component="span"
+        sx={{color: "text.primary"}}
+      >
+        {errors.name?.message}
+      </Typography>
         <TextField
           type="email" {...register('email')}
           id="email"
           label="email"
           sx={inputStyle}
-        />
+      />
+      <Typography 
+        variant='body1' 
+        component="span"
+        sx={{color: "text.primary"}}
+      >
+        {errors.email?.message}
+      </Typography>
         <TextField
           type="password" {...register('password')}
           id="password"
           label="password"
           sx={inputStyle}
-        />
+      />
+      <Typography 
+        variant='body1' 
+        component="span"
+        sx={{color: "text.primary"}}
+      >
+        {errors.password?.message}
+      </Typography>
       <Button
         type="submit"
         variant="contained"

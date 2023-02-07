@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types";
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
 import { List, ListItem, ListItemText, ListItemButton } from '@mui/material';
@@ -39,5 +39,13 @@ const ContactList = ({contacts}) => {
        </List>
     );
    }
+
+   ContactList.propTypes = {
+    contacts: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired
+    })).isRequired
+}
 
 export default ContactList;
